@@ -29,17 +29,15 @@ def main(url_number):
     time.sleep(3)
     instructions = scrape_instructions(br)
     author = scrape_author(br)
-    directions_and_author.append((instructions, author))
+    recipe_mapping = {
+        "Author": author,
+        "Instructions": " ".join(instructions)
+    }
+    directions_and_author.append(recipe_mapping)
     #print(directions_and_author)
-
-
-if __name__ == '__main__':
-    main()
 
 for i in recipe_numbers:
     main(i)
 
-with open('all_recipe_data.txt', 'w') as outfile:
+with open('all_recipe_data.json', 'w') as outfile:
     json.dump(directions_and_author, outfile)
-
-anything :)
